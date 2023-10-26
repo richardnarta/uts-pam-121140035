@@ -30,27 +30,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true);
     }
 
-    fun getData():ArrayList<String>{
-        var regUsername=""
-        var regGit=""
-        var regNIM=""
-        var regEmail=""
-        loginData.userNameFlow.asLiveData().observe(this){
-            regUsername = it.toString()
-        }
-        loginData.userGitFlow.asLiveData().observe(this){
-            regGit = it.toString()
-        }
-        loginData.userNimFlow.asLiveData().observe(this){
-            regNIM = it.toString()
-        }
-        loginData.userEmailFlow.asLiveData().observe(this){
-            regEmail = it.toString()
-        }
-
-        return arrayListOf(regUsername, regGit, regNIM, regEmail)
-    }
-
     private fun setNav(){
         val navView: BottomNavigationView = binding.navView
 

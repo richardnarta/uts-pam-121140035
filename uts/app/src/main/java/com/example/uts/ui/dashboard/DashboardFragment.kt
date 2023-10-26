@@ -60,13 +60,24 @@ class DashboardFragment : Fragment() {
     }
 
     private fun matchData(){
-        val userData = (activity as MainActivity).getData()
+        dataStore.userNameFlow.asLiveData().observe(activity as MainActivity){
+            regUsername = it.toString()
+        }
+        dataStore.userGitFlow.asLiveData().observe(activity as MainActivity){
+            regGit = it.toString()
+        }
+        dataStore.userNimFlow.asLiveData().observe(activity as MainActivity){
+            regNIM = it.toString()
+        }
+        dataStore.userEmailFlow.asLiveData().observe(activity as MainActivity) {
+            regEmail = it.toString()
+        }
 
-        tvImage.text = userData[0].first().toString().uppercase()
-        tvUsername.text = userData[0]
-        tvGit.text = userData[1]
-        tvNIM.text = userData[2]
-        tvEmail.text = userData[3]
+        tvImage.text = regUsername.first().toString().uppercase()
+        tvUsername.text = regUsername
+        tvGit.text = regGit
+        tvNIM.text = regNIM
+        tvEmail.text = regEmail
     }
 
     private fun logoutButtonClick(){
