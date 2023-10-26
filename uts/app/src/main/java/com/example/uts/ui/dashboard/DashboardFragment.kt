@@ -28,7 +28,7 @@ class DashboardFragment : Fragment() {
     private lateinit var tvEmail:TextView
     private lateinit var logoutButton: Button
 
-    private var regUsername=""
+    private var regUsername=" "
     private var regGit=""
     private var regNIM=""
     private var regEmail=""
