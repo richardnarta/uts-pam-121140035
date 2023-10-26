@@ -60,24 +60,30 @@ class DashboardFragment : Fragment() {
     }
 
     private fun matchData(){
-        dataStore.userNameFlow.asLiveData().observe(activity as MainActivity){
-            regUsername = it.toString()
-        }
-        dataStore.userGitFlow.asLiveData().observe(activity as MainActivity){
-            regGit = it.toString()
-        }
-        dataStore.userNimFlow.asLiveData().observe(activity as MainActivity){
-            regNIM = it.toString()
-        }
-        dataStore.userEmailFlow.asLiveData().observe(activity as MainActivity) {
-            regEmail = it.toString()
+        lifecycleScope.launch {
+            dataStore.getUsername().collect {
+                tvImage.text = it.first().toString().uppercase()
+                tvUsername.text = it
+            }
         }
 
-        tvImage.text = regUsername.first().toString().uppercase()
-        tvUsername.text = regUsername
-        tvGit.text = regGit
-        tvNIM.text = regNIM
-        tvEmail.text = regEmail
+        lifecycleScope.launch {
+            dataStore.getUserGit().collect {
+                tvGit.text = it
+            }
+        }
+
+        lifecycleScope.launch {
+            dataStore.getUserNIM().collect {
+                tvNIM.text = it
+            }
+        }
+
+        lifecycleScope.launch {
+            dataStore.getUserEmail().collect {
+                tvEmail.text = it
+            }
+        }
     }
 
     private fun logoutButtonClick(){

@@ -35,23 +35,43 @@ class LoginData (context: Context){
         }
     }
 
-    val userNameFlow : Flow<String> = dataStore.data.map {
+    fun getUsername():Flow<String>{
+        return userNameFlow
+    }
+
+    fun getUserGit():Flow<String>{
+        return userGitFlow
+    }
+
+    fun getUserNIM():Flow<String>{
+        return userNimFlow
+    }
+
+    fun getUserEmail():Flow<String>{
+        return userEmailFlow
+    }
+
+    fun getUserPass():Flow<String>{
+        return userPassFlow
+    }
+
+    private val userNameFlow : Flow<String> = dataStore.data.map {
         it[USER_NAME_KEY] ?: ""
     }
 
-    val userPassFlow : Flow<String> = dataStore.data.map {
+    private val userPassFlow : Flow<String> = dataStore.data.map {
         it[USER_PASS_KEY] ?: ""
     }
 
-    val userGitFlow : Flow<String> = dataStore.data.map {
+    private val userGitFlow : Flow<String> = dataStore.data.map {
         it[USER_GIT_KEY] ?: ""
     }
 
-    val userNimFlow : Flow<String> = dataStore.data.map {
+    private val userNimFlow : Flow<String> = dataStore.data.map {
         it[USER_NIM_KEY] ?: ""
     }
 
-    val userEmailFlow : Flow<String> = dataStore.data.map {
+    private val userEmailFlow : Flow<String> = dataStore.data.map {
         it[USER_EMAIL_KEY] ?: ""
     }
 

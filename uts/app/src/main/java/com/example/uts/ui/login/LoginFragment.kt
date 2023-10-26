@@ -54,12 +54,16 @@ class LoginFragment : Fragment() {
     }
 
     private fun buttonLogin(){
-        dataStore.userNameFlow.asLiveData().observe(viewLifecycleOwner){
-            savedUsername = it
+        lifecycleScope.launch {
+            dataStore.getUsername().collect {
+                savedUsername = it
+            }
         }
 
-        dataStore.userPassFlow.asLiveData().observe(viewLifecycleOwner){
-            savedPass = it
+        lifecycleScope.launch {
+            dataStore.getUserPass().collect {
+                savedPass = it
+            }
         }
 
         loginButton.setOnClickListener {
